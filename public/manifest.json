@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Mantra AVDM React",
+  "name": "Mantra AVDM integration demo for React application",
   "icons": [
     {
       "src": "favicon.ico",
