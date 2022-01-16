@@ -1,18 +1,17 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-import { RD_SERVICE_BASE_URL } from "../configs/rd-service-config";
+import { RD_SERVICE_BASE_URL } from '../configs/rd-service-config';
+import convertXmlToJson from '../utils/xml-to-json';
 
-const XMLParser = require("react-xml-parser");
-
-export const getDeviceStatus = createAsyncThunk("getDeviceStatus/fetch", () =>
+export const getDeviceStatus = createAsyncThunk('getDeviceStatus/fetch', () =>
   axios
     .request({
-      method: "RDSERVICE" as any,
+      method: 'RDSERVICE' as any,
       url: RD_SERVICE_BASE_URL,
     })
     .then((response) => response.data)
-    .catch((error) => error)
+    .catch((error) => error),
 );
 
 const initialState = {
@@ -20,7 +19,7 @@ const initialState = {
 };
 
 const getDeviceStatusSlice = createSlice({
-  name: "deviceStatus",
+  name: 'deviceStatus',
   initialState: initialState,
   reducers: {},
   extraReducers: {
@@ -34,14 +33,14 @@ const getDeviceStatusSlice = createSlice({
     [getDeviceStatus.fulfilled.type]: (state, action) => {
       state.deviceStatus = {
         loading: false,
-        data: new XMLParser().parseFromString(action.payload),
+        data: convertXmlToJson(action.payload),
         error: false,
       };
     },
     [getDeviceStatus.rejected.type]: (state, action) => {
       state.deviceStatus = {
         loading: false,
-        data: new XMLParser().parseFromString(action.payload),
+        data: convertXmlToJson(action.payload),
         error: true,
       };
     },

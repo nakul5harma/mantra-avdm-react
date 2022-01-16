@@ -1,20 +1,19 @@
-import React from "react";
+import React from 'react';
 
-import { DeviceStatusDetails } from "../../models/device-status-details";
-import CaptureFingerprintData from "./CaptureFingerprintData";
-import DeviceInformation from "./DeviceInformation";
-import DeviceStatus from "./DeviceStatus";
+import { DeviceStatusDetails } from '../../models/device-status-details';
+import CaptureFingerprintData from './CaptureFingerprintData';
+import DeviceInformation from './DeviceInformation';
+import DeviceStatus from './DeviceStatus';
 
 function AVDM() {
-  const [deviceStatusDetails, setDeviceStatusDetails] =
-    React.useState<DeviceStatusDetails | null>(null);
-  const [isDeviceReady, setIsDeviceReady] = React.useState<boolean | undefined>(
-    undefined
+  const [deviceStatusDetails, setDeviceStatusDetails] = React.useState<DeviceStatusDetails | null>(
+    null,
   );
+  const [isDeviceReady, setIsDeviceReady] = React.useState<boolean | undefined>(undefined);
 
   React.useEffect(() => {
     if (deviceStatusDetails) {
-      setIsDeviceReady(deviceStatusDetails.status === "READY");
+      setIsDeviceReady(deviceStatusDetails.status === 'READY');
     } else {
       setIsDeviceReady(undefined);
     }

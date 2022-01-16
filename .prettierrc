@@ -1,0 +1,19 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "bracketSpacing": true,
+  "quoteProps": "consistent",
+  "arrowParens": "always",
+  "printWidth": 100,
+  "overrides": [
+    {
+      "files": [".prettierrc", ".babelrc", ".eslintrc", ".stylelintrc"],
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
+}

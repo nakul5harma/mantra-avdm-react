@@ -1,26 +1,22 @@
-import {
-  faGithub,
-  faTwitter,
-  faLinkedin,
-} from "@fortawesome/free-brands-svg-icons";
-import { Container, Navbar } from "react-bootstrap";
-import BrandLink, { BrandLinkProps } from "./BrandLink";
+import { faGithub, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { Container, Navbar } from 'react-bootstrap';
+import BrandLink, { BrandLinkProps } from './BrandLink';
 
 const HEADER_LINKS: BrandLinkProps[] = [
   {
-    id: "GitHub",
+    id: 'GitHub',
     icon: faGithub,
-    link: "https://github.com/nakul5harma/mantra-avdm-react",
+    link: 'https://github.com/nakul5harma/mantra-avdm-react',
   },
   {
-    id: "Twitter",
+    id: 'Twitter',
     icon: faTwitter,
-    link: "https://twitter.com/nakul5harma",
+    link: 'https://twitter.com/nakul5harma',
   },
   {
-    id: "LinkedIn",
+    id: 'LinkedIn',
     icon: faLinkedin,
-    link: "https://www.linkedin.com/in/nakul5harma/",
+    link: 'https://www.linkedin.com/in/nakul5harma/',
   },
 ];
 

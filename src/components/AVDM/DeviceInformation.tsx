@@ -1,33 +1,26 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Container, Accordion, Spinner, Badge } from "react-bootstrap";
+import { Container, Accordion, Spinner, Badge } from 'react-bootstrap';
 
-import { RootState } from "../../store/store";
-import { getDeviceInfo } from "../../slices/get-device-info";
-import DeviceDetails from "../../models/device-details";
-import { DeviceStatusDetails } from "../../models/device-status-details";
-import ListItem from "./ListItem";
+import { RootState } from '../../store/store';
+import { getDeviceInfo } from '../../slices/get-device-info';
+import DeviceDetails from '../../models/device-details';
+import { DeviceStatusDetails } from '../../models/device-status-details';
+import ListItem from './ListItem';
 
 function DeviceInformation() {
-  const [deviceDetails, setDeviceDetails] =
-    React.useState<DeviceDetails | null>(null);
+  const [deviceDetails, setDeviceDetails] = React.useState<DeviceDetails | null>(null);
 
   const dispatch = useDispatch();
 
-  const deviceInfo = useSelector(
-    (state: RootState) => state.deviceInfo.deviceInfo
-  );
-  const deviceStatus = useSelector(
-    (state: RootState) => state.deviceStatus.deviceStatus
-  );
+  const deviceInfo = useSelector((state: RootState) => state.deviceInfo.deviceInfo);
+  const deviceStatus = useSelector((state: RootState) => state.deviceStatus.deviceStatus);
 
   React.useEffect(() => {
     if (!deviceStatus.loading && !deviceStatus.error && deviceStatus.data) {
       const deviceStatusDetails = new DeviceStatusDetails(deviceStatus.data);
-      dispatch(
-        getDeviceInfo(deviceStatusDetails.deviceInfoPath?.path || "/info/path")
-      );
+      dispatch(getDeviceInfo(deviceStatusDetails.deviceInfoPath?.path || '/info/path'));
     }
   }, [dispatch, deviceStatus]);
 

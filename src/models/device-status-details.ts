@@ -1,8 +1,4 @@
-import {
-  DeviceInterfaceDetails,
-  DeviceInterfacePath,
-  DeviceStatusModel,
-} from "./device-status";
+import { DeviceInterfaceDetails, DeviceInterfacePath, DeviceStatusModel } from './device-status';
 
 export class DeviceStatusDetails {
   name: string;
@@ -15,15 +11,11 @@ export class DeviceStatusDetails {
     this.name = deviceStatus.name;
     this.status = deviceStatus.attributes.status;
     this.info = deviceStatus.attributes.info;
-    this.deviceInfoPath = deviceStatus.children.find(
-      (deviceInterface: DeviceInterfaceDetails) => {
-        return deviceInterface.attributes.id === "DEVICEINFO";
-      }
-    )?.attributes;
-    this.capturePath = deviceStatus.children.find(
-      (deviceInterface: DeviceInterfaceDetails) => {
-        return deviceInterface.attributes.id === "CAPTURE";
-      }
-    )?.attributes;
+    this.deviceInfoPath = deviceStatus.children.find((deviceInterface: DeviceInterfaceDetails) => {
+      return deviceInterface.attributes.id === 'DEVICEINFO';
+    })?.attributes;
+    this.capturePath = deviceStatus.children.find((deviceInterface: DeviceInterfaceDetails) => {
+      return deviceInterface.attributes.id === 'CAPTURE';
+    })?.attributes;
   }
 }

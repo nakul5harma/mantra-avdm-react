@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import { Accordion, Badge, Button, Container, Spinner } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { Accordion, Badge, Button, Container, Spinner } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from "../../store/store";
-import { captureFingerprintData } from "../../slices/capture-fingerprint-data";
-import { CaptureResponseDetails } from "../../models/capture-response";
-import { DeviceStatusDetails } from "../../models/device-status-details";
-import ListItem from "./ListItem";
+import { RootState } from '../../store/store';
+import { captureFingerprintData } from '../../slices/capture-fingerprint-data';
+import { CaptureResponseDetails } from '../../models/capture-response';
+import { DeviceStatusDetails } from '../../models/device-status-details';
+import ListItem from './ListItem';
 
 function CaptureFingerprintData() {
   const [captureResponseDetails, setCaptureResponseDetails] =
@@ -15,22 +15,12 @@ function CaptureFingerprintData() {
 
   const dispatch = useDispatch();
 
-  const fingerprintData = useSelector(
-    (state: RootState) => state.fingerprintData.fingerprintData
-  );
-  const deviceStatus = useSelector(
-    (state: RootState) => state.deviceStatus.deviceStatus
-  );
+  const fingerprintData = useSelector((state: RootState) => state.fingerprintData.fingerprintData);
+  const deviceStatus = useSelector((state: RootState) => state.deviceStatus.deviceStatus);
 
   React.useEffect(() => {
-    if (
-      !fingerprintData.loading &&
-      !fingerprintData.error &&
-      fingerprintData.data
-    ) {
-      setCaptureResponseDetails(
-        new CaptureResponseDetails(fingerprintData.data)
-      );
+    if (!fingerprintData.loading && !fingerprintData.error && fingerprintData.data) {
+      setCaptureResponseDetails(new CaptureResponseDetails(fingerprintData.data));
     } else {
       setCaptureResponseDetails(null);
     }
@@ -39,11 +29,7 @@ function CaptureFingerprintData() {
   const handleStartCapture = () => {
     if (!deviceStatus.loading && !deviceStatus.error && deviceStatus.data) {
       const deviceStatusDetails = new DeviceStatusDetails(deviceStatus.data);
-      dispatch(
-        captureFingerprintData(
-          deviceStatusDetails.capturePath?.path || "/info/capture"
-        )
-      );
+      dispatch(captureFingerprintData(deviceStatusDetails.capturePath?.path || '/info/capture'));
     }
   };
 
@@ -52,10 +38,8 @@ function CaptureFingerprintData() {
       <Accordion defaultActiveKey="0">
         <Accordion.Item eventKey="0">
           <Accordion.Header>
-            Capture Fingerprint Data{" "}
-            {fingerprintData.loading && (
-              <Spinner animation="grow" role="status" className="ms-4" />
-            )}
+            Capture Fingerprint Data{' '}
+            {fingerprintData.loading && <Spinner animation="grow" role="status" className="ms-4" />}
           </Accordion.Header>
           <Accordion.Body>
             <Container>
@@ -74,40 +58,19 @@ function CaptureFingerprintData() {
 
                         <Badge
                           pill
-                          bg={
-                            captureResponseDetails?.errCode === "0"
-                              ? "success"
-                              : "danger"
-                          }
+                          bg={captureResponseDetails?.errCode === '0' ? 'success' : 'danger'}
                           className="ms-4"
                         >
-                          {captureResponseDetails?.errCode === "0"
-                            ? "SUCCESS"
-                            : "FAILED"}
+                          {captureResponseDetails?.errCode === '0' ? 'SUCCESS' : 'FAILED'}
                         </Badge>
                       </>
                     }
                   />
-                  <ListItem
-                    label="errInfo"
-                    value={captureResponseDetails?.errInfo}
-                  />
-                  <ListItem
-                    label="fCount"
-                    value={captureResponseDetails?.fCount}
-                  />
-                  <ListItem
-                    label="fType"
-                    value={captureResponseDetails?.fType}
-                  />
-                  <ListItem
-                    label="nmPoints"
-                    value={captureResponseDetails?.nmPoints}
-                  />
-                  <ListItem
-                    label="qScore"
-                    value={captureResponseDetails?.qScore}
-                  />
+                  <ListItem label="errInfo" value={captureResponseDetails?.errInfo} />
+                  <ListItem label="fCount" value={captureResponseDetails?.fCount} />
+                  <ListItem label="fType" value={captureResponseDetails?.fType} />
+                  <ListItem label="nmPoints" value={captureResponseDetails?.nmPoints} />
+                  <ListItem label="qScore" value={captureResponseDetails?.qScore} />
                 </div>
               )}
             </Container>

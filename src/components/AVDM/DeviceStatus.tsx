@@ -1,20 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import { useDispatch, useSelector } from "react-redux";
-import { Accordion, Badge, Container, Spinner } from "react-bootstrap";
+import { useDispatch, useSelector } from 'react-redux';
+import { Accordion, Badge, Container, Spinner } from 'react-bootstrap';
 
-import { RootState } from "../../store/store";
-import { getDeviceStatus } from "../../slices/get-device-status";
-import { DeviceStatusDetails } from "../../models/device-status-details";
-import DeviceNotReady from "./DeviceNotReady";
-import ListItem from "./ListItem";
+import { RootState } from '../../store/store';
+import { getDeviceStatus } from '../../slices/get-device-status';
+import { DeviceStatusDetails } from '../../models/device-status-details';
+import DeviceNotReady from './DeviceNotReady';
+import ListItem from './ListItem';
 
 export interface DeviceStatusProps {
   isDeviceReady: boolean | undefined;
   deviceStatusDetails: DeviceStatusDetails | null;
-  setDeviceStatusDetails: React.Dispatch<
-    React.SetStateAction<DeviceStatusDetails | null>
-  >;
+  setDeviceStatusDetails: React.Dispatch<React.SetStateAction<DeviceStatusDetails | null>>;
 }
 
 function DeviceStatus(props: DeviceStatusProps) {
@@ -22,9 +20,7 @@ function DeviceStatus(props: DeviceStatusProps) {
 
   const dispatch = useDispatch();
 
-  const deviceStatus = useSelector(
-    (state: RootState) => state.deviceStatus.deviceStatus
-  );
+  const deviceStatus = useSelector((state: RootState) => state.deviceStatus.deviceStatus);
 
   React.useEffect(() => {
     dispatch(getDeviceStatus());
@@ -48,11 +44,7 @@ function DeviceStatus(props: DeviceStatusProps) {
         <Accordion.Item eventKey="0">
           <Accordion.Header>
             Device Status
-            <Badge
-              pill
-              bg={isDeviceReady ? "success" : "danger"}
-              className="ms-4"
-            >
+            <Badge pill bg={isDeviceReady ? 'success' : 'danger'} className="ms-4">
               {deviceStatusDetails?.status}
             </Badge>
           </Accordion.Header>

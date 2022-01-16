@@ -1,8 +1,8 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-import getDeviceStatusSlice from "../slices/get-device-status";
-import getDeviceInfoSlice from "../slices/get-device-info";
-import captureFingerprintDataSlice from "../slices/capture-fingerprint-data";
+import getDeviceStatusSlice from '../slices/get-device-status';
+import getDeviceInfoSlice from '../slices/get-device-info';
+import captureFingerprintDataSlice from '../slices/capture-fingerprint-data';
 
 const rootReducer = combineReducers({
   deviceStatus: getDeviceStatusSlice.reducer,

@@ -1,4 +1,4 @@
-import { CaptureDataModel, CaptureDataResponse } from "./capture-data";
+import { CaptureDataModel, CaptureDataResponse } from './capture-data';
 
 export class CaptureResponseDetails {
   name: string;
@@ -10,11 +10,9 @@ export class CaptureResponseDetails {
   qScore: string;
 
   constructor(captureData: CaptureDataModel) {
-    const resp = captureData.children.find(
-      (captureDataResponse: CaptureDataResponse) => {
-        return captureDataResponse.name === "Resp";
-      }
-    );
+    const resp = captureData.children.find((captureDataResponse: CaptureDataResponse) => {
+      return captureDataResponse.name === 'Resp';
+    });
 
     this.name = captureData.name;
     this.errCode = resp?.attributes.errCode as string;

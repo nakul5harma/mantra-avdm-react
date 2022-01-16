@@ -1,7 +1,4 @@
-import {
-  DeviceInformationModel,
-  AdditionalInfoParam,
-} from "./device-information";
+import { DeviceInformationModel, AdditionalInfoParam } from './device-information';
 
 export default class DeviceDetails {
   dpId: string;
@@ -18,13 +15,13 @@ export default class DeviceDetails {
     this.mi = deviceInformation.attributes.mi;
     this.srno = deviceInformation.children[0].children.find(
       (additionalInfoParam: AdditionalInfoParam) => {
-        return additionalInfoParam.attributes.name === "srno";
-      }
+        return additionalInfoParam.attributes.name === 'srno';
+      },
     )?.attributes.value as string;
     this.sysid = deviceInformation.children[0].children.find(
       (additionalInfoParam: AdditionalInfoParam) => {
-        return additionalInfoParam.attributes.name === "sysid";
-      }
+        return additionalInfoParam.attributes.name === 'sysid';
+      },
     )?.attributes.value as string;
   }
 }
