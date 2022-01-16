@@ -1,8 +1,9 @@
 import React from "react";
 
-import { Container, Row, Col, Accordion } from "react-bootstrap";
+import { Container, Accordion, Spinner } from "react-bootstrap";
 
 import DeviceDetails from "../../models/device-details";
+import ListItem from "./ListItem";
 
 const XMLParser = require("react-xml-parser");
 
@@ -15,21 +16,6 @@ const sampleResponse = `<?xml version="1.0"?>
   </additional_info>
 </DeviceInfo>`;
 
-export interface DeviceInformationValueProps {
-  label: string;
-  value: string | undefined;
-}
-
-function DeviceInformationValue(props: DeviceInformationValueProps) {
-  return (
-    <Row>
-      <Col className="fw-bold">{props.label}</Col>
-      <Col>:</Col>
-      <Col>{props.value}</Col>
-    </Row>
-  );
-}
-
 function DeviceInformation() {
   const [deviceDetails, setDeviceDetails] =
     React.useState<DeviceDetails | null>(null);
@@ -40,38 +26,25 @@ function DeviceInformation() {
   }, []);
 
   return (
-    <>
-      <Accordion defaultActiveKey="0">
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Device Details</Accordion.Header>
-          <Accordion.Body>
+    <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>Device Details</Accordion.Header>
+        <Accordion.Body>
+          {deviceDetails ? (
             <Container>
-              <DeviceInformationValue
-                label="dpId"
-                value={deviceDetails?.dpId}
-              />
-              <DeviceInformationValue
-                label="rdsId"
-                value={deviceDetails?.rdsId}
-              />
-              <DeviceInformationValue
-                label="rdsVer"
-                value={deviceDetails?.rdsVer}
-              />
-              <DeviceInformationValue label="mi" value={deviceDetails?.mi} />
-              <DeviceInformationValue
-                label="srno"
-                value={deviceDetails?.srno}
-              />
-              <DeviceInformationValue
-                label="sysid"
-                value={deviceDetails?.sysid}
-              />
+              <ListItem label="dpId" value={deviceDetails?.dpId} />
+              <ListItem label="rdsId" value={deviceDetails?.rdsId} />
+              <ListItem label="rdsVer" value={deviceDetails?.rdsVer} />
+              <ListItem label="mi" value={deviceDetails?.mi} />
+              <ListItem label="srno" value={deviceDetails?.srno} />
+              <ListItem label="sysid" value={deviceDetails?.sysid} />
             </Container>
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
-    </>
+          ) : (
+            <Spinner animation="grow" role="status"></Spinner>
+          )}
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
   );
 }
 

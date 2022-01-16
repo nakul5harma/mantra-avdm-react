@@ -1,22 +1,30 @@
 import React from "react";
 
-import DeviceNotReady from "./DeviceNotReady";
+import { DeviceStatusDetails } from "../../models/device-status-details";
 import DeviceInformation from "./DeviceInformation";
+import DeviceStatus from "./DeviceStatus";
 
 function AVDM() {
-  const [isDeviceReady, setIsDeviceReady] = React.useState<boolean>(true);
+  const [deviceStatusDetails, setDeviceStatusDetails] =
+    React.useState<DeviceStatusDetails | null>(null);
+  const [isDeviceReady, setIsDeviceReady] = React.useState<boolean | undefined>(
+    undefined
+  );
 
-  const checkConnectivityAgain = () => {
-    console.log("checking!");
-  };
+  React.useEffect(() => {
+    if (deviceStatusDetails) {
+      setIsDeviceReady(deviceStatusDetails.status === "READY");
+    }
+  }, [deviceStatusDetails, setIsDeviceReady]);
 
   return (
     <div className="AVDM">
-      {!isDeviceReady ? (
-        <DeviceNotReady checkConnectivityAgain={checkConnectivityAgain} />
-      ) : (
-        <DeviceInformation />
-      )}
+      <DeviceStatus
+        isDeviceReady={isDeviceReady}
+        deviceStatusDetails={deviceStatusDetails}
+        setDeviceStatusDetails={setDeviceStatusDetails}
+      />
+      {isDeviceReady && <DeviceInformation />}
     </div>
   );
 }
