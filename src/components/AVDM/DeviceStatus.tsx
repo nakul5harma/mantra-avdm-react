@@ -1,18 +1,15 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Accordion, Badge, Container, Spinner } from "react-bootstrap";
-import { DeviceStatusDetails } from "../../models/device-status-details";
 
+import { RootState } from "../../store/store";
+import { fetchDeviceStatus } from "../../slices/device-status-slice";
+import { DeviceStatusDetails } from "../../models/device-status-details";
 import DeviceNotReady from "./DeviceNotReady";
 import ListItem from "./ListItem";
 
 const XMLParser = require("react-xml-parser");
-
-const sampleResponse = `<?xml version="1.0"?>
-<RDService status="READY" info="Mantra Authentication Vendor Device Manager">
-    <Interface id="DEVICEINFO" path="/rd/info" />
-    <Interface id="CAPTURE" path="/rd/capture" />
-</RDService>`;
 
 export interface DeviceStatusProps {
   isDeviceReady: boolean | undefined;
@@ -25,17 +22,29 @@ export interface DeviceStatusProps {
 function DeviceStatus(props: DeviceStatusProps) {
   const { isDeviceReady, deviceStatusDetails, setDeviceStatusDetails } = props;
 
-  React.useEffect(() => {
-    const deviceStatusTimeout = setTimeout(() => {
-      const deviceStatus = new XMLParser().parseFromString(sampleResponse);
-      setDeviceStatusDetails(new DeviceStatusDetails(deviceStatus));
+  const dispatch = useDispatch();
 
-      clearTimeout(deviceStatusTimeout);
-    }, 2000);
-  }, [setDeviceStatusDetails]);
+  const deviceStatus = useSelector(
+    (state: RootState) => state.deviceStatus.deviceStatus
+  );
+
+  React.useEffect(() => {
+    dispatch(fetchDeviceStatus());
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    if (!deviceStatus.loading && !deviceStatus.error && deviceStatus.data) {
+      const deviceStatusResponse = new XMLParser().parseFromString(
+        deviceStatus.data
+      );
+      setDeviceStatusDetails(new DeviceStatusDetails(deviceStatusResponse));
+    } else {
+      setDeviceStatusDetails(null);
+    }
+  }, [deviceStatus, setDeviceStatusDetails]);
 
   const checkConnectivityAgain = () => {
-    console.log("checking!");
+    dispatch(fetchDeviceStatus());
   };
 
   return (

@@ -15,6 +15,8 @@ function AVDM() {
   React.useEffect(() => {
     if (deviceStatusDetails) {
       setIsDeviceReady(deviceStatusDetails.status === "READY");
+    } else {
+      setIsDeviceReady(undefined);
     }
   }, [deviceStatusDetails, setIsDeviceReady]);
 
