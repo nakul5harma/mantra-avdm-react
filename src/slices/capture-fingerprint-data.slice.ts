@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { PID_OPTIONS, RD_SERVICE_BASE_URL } from '../configs/rd-service-config';
-import getSHA256EncryptedBase64Wadh from '../utils/capture-fingerprint-data';
-import convertXmlToJson from '../utils/xml-to-json';
+import { PID_OPTIONS, RD_SERVICE_BASE_URL } from '../configs/rd-service.config';
+import getSHA256EncryptedBase64Wadh from '../utils/capture-fingerprint-data.util';
+import convertXmlToJson from '../utils/xml-to-json.util';
 
 export const captureFingerprintData = createAsyncThunk(
   'captureFingerprintData/fetch',

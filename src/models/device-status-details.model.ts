@@ -1,4 +1,8 @@
-import { DeviceInterfaceDetails, DeviceInterfacePath, DeviceStatusModel } from './device-status';
+import {
+  DeviceInterfaceDetails,
+  DeviceInterfacePath,
+  DeviceStatusModel,
+} from './device-status.model';
 
 export class DeviceStatusDetails {
   name: string;

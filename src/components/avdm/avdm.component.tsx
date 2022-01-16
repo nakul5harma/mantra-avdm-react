@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { DeviceStatusDetails } from '../../models/device-status-details';
-import CaptureFingerprintData from './CaptureFingerprintData';
-import DeviceInformation from './DeviceInformation';
-import DeviceStatus from './DeviceStatus';
+import { DeviceStatusDetails } from '../../models/device-status-details.model';
+import CaptureFingerprintData from './capture-fingerprint-data.component';
+import DeviceInformation from './device-information.component';
+import DeviceStatus from './device-status.component';
 
 function AVDM() {
   const [deviceStatusDetails, setDeviceStatusDetails] = React.useState<DeviceStatusDetails | null>(

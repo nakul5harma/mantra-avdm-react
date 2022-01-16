@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Accordion, Badge, Container, Spinner } from 'react-bootstrap';
 
 import { RootState } from '../../store/store';
-import { getDeviceStatus } from '../../slices/get-device-status';
-import { DeviceStatusDetails } from '../../models/device-status-details';
-import DeviceNotReady from './DeviceNotReady';
-import ListItem from './ListItem';
+import { getDeviceStatus } from '../../slices/get-device-status.slice';
+import { DeviceStatusDetails } from '../../models/device-status-details.model';
+import DeviceNotReady from './device-not-ready.component';
+import ListItem from './list-item.component';
 
 export interface DeviceStatusProps {
   isDeviceReady: boolean | undefined;

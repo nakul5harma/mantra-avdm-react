@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { RD_SERVICE_BASE_URL } from '../configs/rd-service-config';
-import convertXmlToJson from '../utils/xml-to-json';
+import { RD_SERVICE_BASE_URL } from '../configs/rd-service.config';
+import convertXmlToJson from '../utils/xml-to-json.util';
 
 export const getDeviceInfo = createAsyncThunk('getDeviceInfo/fetch', (url: string) =>
   axios

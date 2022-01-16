@@ -1,7 +1,7 @@
 import { Container } from 'react-bootstrap';
 
-import AVDM from '../AVDM/AVDM';
-import Header from '../Header/Header';
+import AVDM from '../avdm/avdm.component';
+import Header from '../header/header.component';
 
 function App() {
   return (

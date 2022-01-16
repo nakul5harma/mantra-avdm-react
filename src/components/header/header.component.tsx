@@ -1,6 +1,6 @@
 import { faGithub, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { Container, Navbar } from 'react-bootstrap';
-import BrandLink, { BrandLinkProps } from './BrandLink';
+import BrandLink, { BrandLinkProps } from './brand-link.component';
 
 const HEADER_LINKS: BrandLinkProps[] = [
   {

@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container, Accordion, Spinner, Badge } from 'react-bootstrap';
 
 import { RootState } from '../../store/store';
-import { getDeviceInfo } from '../../slices/get-device-info';
-import DeviceDetails from '../../models/device-details';
-import { DeviceStatusDetails } from '../../models/device-status-details';
-import ListItem from './ListItem';
+import { getDeviceInfo } from '../../slices/get-device-info.slice';
+import DeviceDetails from '../../models/device-details.model';
+import { DeviceStatusDetails } from '../../models/device-status-details.model';
+import ListItem from './list-item.component';
 
 function DeviceInformation() {
   const [deviceDetails, setDeviceDetails] = React.useState<DeviceDetails | null>(null);

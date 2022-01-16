@@ -1,4 +1,4 @@
-import { DeviceInformationModel, AdditionalInfoParam } from './device-information';
+import { DeviceInformationModel, AdditionalInfoParam } from './device-information.model';
 
 export default class DeviceDetails {
   dpId: string;

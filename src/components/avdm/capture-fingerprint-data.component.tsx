@@ -4,10 +4,10 @@ import { Accordion, Badge, Button, Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../store/store';
-import { captureFingerprintData } from '../../slices/capture-fingerprint-data';
-import { CaptureResponseDetails } from '../../models/capture-response';
-import { DeviceStatusDetails } from '../../models/device-status-details';
-import ListItem from './ListItem';
+import { captureFingerprintData } from '../../slices/capture-fingerprint-data.slice';
+import { CaptureResponseDetails } from '../../models/capture-data-response.model';
+import { DeviceStatusDetails } from '../../models/device-status-details.model';
+import ListItem from './list-item.component';
 
 function CaptureFingerprintData() {
   const [captureResponseDetails, setCaptureResponseDetails] =

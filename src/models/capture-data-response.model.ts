@@ -1,4 +1,4 @@
-import { CaptureDataModel, CaptureDataResponse } from './capture-data';
+import { CaptureDataModel, CaptureDataResponse } from './capture-data.model';
 
 export class CaptureResponseDetails {
   name: string;
