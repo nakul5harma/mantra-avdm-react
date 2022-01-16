@@ -27,17 +27,18 @@ const HEADER_LINKS: BrandLinkProps[] = [
 function Header() {
   return (
     <Navbar bg="dark" variant="dark" sticky="top">
-      <Container className="d-flex justify-content-between my-3">
+      <Container className="d-flex justify-content-between my-2">
         <div>
           <Navbar.Brand>
             <img
               alt=""
-              src="/logo192.png"
-              width="30"
-              height="30"
+              src="/logo512.png"
+              width="40"
+              height="40"
               className="d-inline-block align-top"
-            />{" "}
-            Mantra AVDM React Integration Demo
+            />
+            <span> </span>
+            <span className="fs-3">Mantra AVDM React Integration Demo</span>
           </Navbar.Brand>
         </div>
 

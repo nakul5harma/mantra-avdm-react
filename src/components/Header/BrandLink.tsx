@@ -12,7 +12,7 @@ function BrandLink(props: BrandLinkProps) {
 
   return (
     <a className="mx-2" href={link} target="_blank" rel="noreferrer">
-      <FontAwesomeIcon icon={icon} color="#ffffff" />
+      <FontAwesomeIcon icon={icon} color="#ffffff" size="lg" />
     </a>
   );
 }
