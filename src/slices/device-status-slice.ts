@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { RD_SERVICE_BASE_URL } from "../configs/rd-service-config";
 
+const XMLParser = require("react-xml-parser");
+
 export const fetchDeviceStatus = createAsyncThunk("deviceStatus/fetch", () =>
   axios
     .request({
@@ -32,14 +34,14 @@ const deviceStatusSlice = createSlice({
     [fetchDeviceStatus.fulfilled.type]: (state, action) => {
       state.deviceStatus = {
         loading: false,
-        data: action.payload,
+        data: new XMLParser().parseFromString(action.payload),
         error: false,
       };
     },
     [fetchDeviceStatus.rejected.type]: (state, action) => {
       state.deviceStatus = {
         loading: false,
-        data: action.payload,
+        data: new XMLParser().parseFromString(action.payload),
         error: true,
       };
     },

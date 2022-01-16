@@ -1,6 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 
+import { useDispatch, useSelector } from "react-redux";
 import { Accordion, Badge, Container, Spinner } from "react-bootstrap";
 
 import { RootState } from "../../store/store";
@@ -8,8 +8,6 @@ import { fetchDeviceStatus } from "../../slices/device-status-slice";
 import { DeviceStatusDetails } from "../../models/device-status-details";
 import DeviceNotReady from "./DeviceNotReady";
 import ListItem from "./ListItem";
-
-const XMLParser = require("react-xml-parser");
 
 export interface DeviceStatusProps {
   isDeviceReady: boolean | undefined;
@@ -34,10 +32,7 @@ function DeviceStatus(props: DeviceStatusProps) {
 
   React.useEffect(() => {
     if (!deviceStatus.loading && !deviceStatus.error && deviceStatus.data) {
-      const deviceStatusResponse = new XMLParser().parseFromString(
-        deviceStatus.data
-      );
-      setDeviceStatusDetails(new DeviceStatusDetails(deviceStatusResponse));
+      setDeviceStatusDetails(new DeviceStatusDetails(deviceStatus.data));
     } else {
       setDeviceStatusDetails(null);
     }
