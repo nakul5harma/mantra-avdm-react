@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container, Accordion, Spinner, Badge } from "react-bootstrap";
 
 import { RootState } from "../../store/store";
-import { fetchDeviceInfo } from "../../slices/device-info-slice";
+import { getDeviceInfo } from "../../slices/get-device-info";
 import DeviceDetails from "../../models/device-details";
 import { DeviceStatusDetails } from "../../models/device-status-details";
 import ListItem from "./ListItem";
@@ -26,9 +26,7 @@ function DeviceInformation() {
     if (!deviceStatus.loading && !deviceStatus.error && deviceStatus.data) {
       const deviceStatusDetails = new DeviceStatusDetails(deviceStatus.data);
       dispatch(
-        fetchDeviceInfo(
-          deviceStatusDetails.deviceInfoPath?.path || "/info/path"
-        )
+        getDeviceInfo(deviceStatusDetails.deviceInfoPath?.path || "/info/path")
       );
     }
   }, [dispatch, deviceStatus]);

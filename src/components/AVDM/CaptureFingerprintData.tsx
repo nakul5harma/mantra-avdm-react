@@ -4,7 +4,7 @@ import { Accordion, Badge, Button, Container, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../store/store";
-import { captureData } from "../../slices/capture-data-slice";
+import { captureFingerprintData } from "../../slices/capture-fingerprint-data";
 import { CaptureResponseDetails } from "../../models/capture-response";
 import { DeviceStatusDetails } from "../../models/device-status-details";
 import ListItem from "./ListItem";
@@ -15,8 +15,8 @@ function CaptureFingerprintData() {
 
   const dispatch = useDispatch();
 
-  const captureDataResponse = useSelector(
-    (state: RootState) => state.captureData.captureData
+  const fingerprintData = useSelector(
+    (state: RootState) => state.fingerprintData.fingerprintData
   );
   const deviceStatus = useSelector(
     (state: RootState) => state.deviceStatus.deviceStatus
@@ -24,23 +24,25 @@ function CaptureFingerprintData() {
 
   React.useEffect(() => {
     if (
-      !captureDataResponse.loading &&
-      !captureDataResponse.error &&
-      captureDataResponse.data
+      !fingerprintData.loading &&
+      !fingerprintData.error &&
+      fingerprintData.data
     ) {
       setCaptureResponseDetails(
-        new CaptureResponseDetails(captureDataResponse.data)
+        new CaptureResponseDetails(fingerprintData.data)
       );
     } else {
       setCaptureResponseDetails(null);
     }
-  }, [captureDataResponse]);
+  }, [fingerprintData]);
 
   const handleStartCapture = () => {
     if (!deviceStatus.loading && !deviceStatus.error && deviceStatus.data) {
       const deviceStatusDetails = new DeviceStatusDetails(deviceStatus.data);
       dispatch(
-        captureData(deviceStatusDetails.capturePath?.path || "/info/capture")
+        captureFingerprintData(
+          deviceStatusDetails.capturePath?.path || "/info/capture"
+        )
       );
     }
   };
@@ -51,7 +53,7 @@ function CaptureFingerprintData() {
         <Accordion.Item eventKey="0">
           <Accordion.Header>
             Capture Fingerprint Data{" "}
-            {captureDataResponse.loading && (
+            {fingerprintData.loading && (
               <Spinner animation="grow" role="status" className="ms-4" />
             )}
           </Accordion.Header>

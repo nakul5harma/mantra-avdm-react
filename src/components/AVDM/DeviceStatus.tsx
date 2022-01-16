@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Accordion, Badge, Container, Spinner } from "react-bootstrap";
 
 import { RootState } from "../../store/store";
-import { fetchDeviceStatus } from "../../slices/device-status-slice";
+import { getDeviceStatus } from "../../slices/get-device-status";
 import { DeviceStatusDetails } from "../../models/device-status-details";
 import DeviceNotReady from "./DeviceNotReady";
 import ListItem from "./ListItem";
@@ -27,7 +27,7 @@ function DeviceStatus(props: DeviceStatusProps) {
   );
 
   React.useEffect(() => {
-    dispatch(fetchDeviceStatus());
+    dispatch(getDeviceStatus());
   }, [dispatch]);
 
   React.useEffect(() => {
@@ -39,7 +39,7 @@ function DeviceStatus(props: DeviceStatusProps) {
   }, [deviceStatus, setDeviceStatusDetails]);
 
   const checkConnectivityAgain = () => {
-    dispatch(fetchDeviceStatus());
+    dispatch(getDeviceStatus());
   };
 
   return (

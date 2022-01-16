@@ -5,12 +5,12 @@ import { RD_SERVICE_BASE_URL } from "../configs/rd-service-config";
 
 const XMLParser = require("react-xml-parser");
 
-export const captureData = createAsyncThunk(
-  "captureData/fetch",
+export const getDeviceInfo = createAsyncThunk(
+  "getDeviceInfo/fetch",
   (url: string) =>
     axios
       .request({
-        method: "CAPTURE" as any,
+        method: "DEVICEINFO" as any,
         url: `${RD_SERVICE_BASE_URL}${url}`,
       })
       .then((response) => response.data)
@@ -18,30 +18,30 @@ export const captureData = createAsyncThunk(
 );
 
 const initialState = {
-  captureData: { loading: false, data: null, error: false },
+  deviceInfo: { loading: false, data: null, error: false },
 };
 
-const captureDataSlice = createSlice({
-  name: "captureData",
+const getDeviceInfoSlice = createSlice({
+  name: "deviceInfo",
   initialState: initialState,
   reducers: {},
   extraReducers: {
-    [captureData.pending.type]: (state, action) => {
-      state.captureData = {
+    [getDeviceInfo.pending.type]: (state, action) => {
+      state.deviceInfo = {
         loading: true,
         data: null,
         error: false,
       };
     },
-    [captureData.fulfilled.type]: (state, action) => {
-      state.captureData = {
+    [getDeviceInfo.fulfilled.type]: (state, action) => {
+      state.deviceInfo = {
         loading: false,
         data: new XMLParser().parseFromString(action.payload),
         error: false,
       };
     },
-    [captureData.rejected.type]: (state, action) => {
-      state.captureData = {
+    [getDeviceInfo.rejected.type]: (state, action) => {
+      state.deviceInfo = {
         loading: false,
         data: new XMLParser().parseFromString(action.payload),
         error: true,
@@ -50,4 +50,4 @@ const captureDataSlice = createSlice({
   },
 });
 
-export default captureDataSlice;
+export default getDeviceInfoSlice;

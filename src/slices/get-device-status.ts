@@ -5,7 +5,7 @@ import { RD_SERVICE_BASE_URL } from "../configs/rd-service-config";
 
 const XMLParser = require("react-xml-parser");
 
-export const fetchDeviceStatus = createAsyncThunk("deviceStatus/fetch", () =>
+export const getDeviceStatus = createAsyncThunk("getDeviceStatus/fetch", () =>
   axios
     .request({
       method: "RDSERVICE" as any,
@@ -19,26 +19,26 @@ const initialState = {
   deviceStatus: { loading: false, data: null, error: false },
 };
 
-const deviceStatusSlice = createSlice({
+const getDeviceStatusSlice = createSlice({
   name: "deviceStatus",
   initialState: initialState,
   reducers: {},
   extraReducers: {
-    [fetchDeviceStatus.pending.type]: (state, action) => {
+    [getDeviceStatus.pending.type]: (state, action) => {
       state.deviceStatus = {
         loading: true,
         data: null,
         error: false,
       };
     },
-    [fetchDeviceStatus.fulfilled.type]: (state, action) => {
+    [getDeviceStatus.fulfilled.type]: (state, action) => {
       state.deviceStatus = {
         loading: false,
         data: new XMLParser().parseFromString(action.payload),
         error: false,
       };
     },
-    [fetchDeviceStatus.rejected.type]: (state, action) => {
+    [getDeviceStatus.rejected.type]: (state, action) => {
       state.deviceStatus = {
         loading: false,
         data: new XMLParser().parseFromString(action.payload),
@@ -48,4 +48,4 @@ const deviceStatusSlice = createSlice({
   },
 });
 
-export default deviceStatusSlice;
+export default getDeviceStatusSlice;
