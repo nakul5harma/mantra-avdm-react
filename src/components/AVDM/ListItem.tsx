@@ -2,7 +2,7 @@ import { Col, Row } from "react-bootstrap";
 
 export interface ListItemProps {
   label: string;
-  value: string | undefined;
+  value: JSX.Element | string | undefined;
 }
 
 function ListItem(props: ListItemProps) {

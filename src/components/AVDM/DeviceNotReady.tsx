@@ -18,7 +18,7 @@ function DeviceNotReady(props: DeviceNotReadyProps) {
       <hr />
       <div className="d-flex justify-content-end">
         <Button onClick={checkConnectivityAgain} variant="danger">
-          Press Me To Check Again!
+          Click Me To Check Again
         </Button>
       </div>
     </Alert>

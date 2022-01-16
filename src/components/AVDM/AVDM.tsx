@@ -1,6 +1,7 @@
 import React from "react";
 
 import { DeviceStatusDetails } from "../../models/device-status-details";
+import CaptureFingerprintData from "./CaptureFingerprintData";
 import DeviceInformation from "./DeviceInformation";
 import DeviceStatus from "./DeviceStatus";
 
@@ -18,13 +19,14 @@ function AVDM() {
   }, [deviceStatusDetails, setIsDeviceReady]);
 
   return (
-    <div className="AVDM">
+    <div className="mt-4 mb-4">
       <DeviceStatus
         isDeviceReady={isDeviceReady}
         deviceStatusDetails={deviceStatusDetails}
         setDeviceStatusDetails={setDeviceStatusDetails}
       />
       {isDeviceReady && <DeviceInformation />}
+      {isDeviceReady && <CaptureFingerprintData />}
     </div>
   );
 }

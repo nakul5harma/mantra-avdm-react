@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Accordion, Container, Spinner } from "react-bootstrap";
+import { Accordion, Badge, Container, Spinner } from "react-bootstrap";
 import { DeviceStatusDetails } from "../../models/device-status-details";
 
 import DeviceNotReady from "./DeviceNotReady";
@@ -26,8 +26,12 @@ function DeviceStatus(props: DeviceStatusProps) {
   const { isDeviceReady, deviceStatusDetails, setDeviceStatusDetails } = props;
 
   React.useEffect(() => {
-    const deviceStatus = new XMLParser().parseFromString(sampleResponse);
-    setDeviceStatusDetails(new DeviceStatusDetails(deviceStatus));
+    const deviceStatusTimeout = setTimeout(() => {
+      const deviceStatus = new XMLParser().parseFromString(sampleResponse);
+      setDeviceStatusDetails(new DeviceStatusDetails(deviceStatus));
+
+      clearTimeout(deviceStatusTimeout);
+    }, 2000);
   }, [setDeviceStatusDetails]);
 
   const checkConnectivityAgain = () => {
@@ -38,8 +42,21 @@ function DeviceStatus(props: DeviceStatusProps) {
     <>
       <Accordion defaultActiveKey="0">
         <Accordion.Item eventKey="0">
-          <Accordion.Header>Device Status</Accordion.Header>
+          <Accordion.Header>
+            Device Status
+            <Badge
+              pill
+              bg={isDeviceReady ? "success" : "danger"}
+              className="ms-4"
+            >
+              {deviceStatusDetails?.status}
+            </Badge>
+          </Accordion.Header>
           <Accordion.Body>
+            {isDeviceReady === false && (
+              <DeviceNotReady checkConnectivityAgain={checkConnectivityAgain} />
+            )}
+
             {deviceStatusDetails ? (
               <Container>
                 <ListItem label="name" value={deviceStatusDetails?.name} />
@@ -60,10 +77,6 @@ function DeviceStatus(props: DeviceStatusProps) {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-
-      {isDeviceReady === false && (
-        <DeviceNotReady checkConnectivityAgain={checkConnectivityAgain} />
-      )}
     </>
   );
 }

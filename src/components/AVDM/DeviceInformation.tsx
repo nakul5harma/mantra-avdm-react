@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Accordion, Spinner } from "react-bootstrap";
+import { Container, Accordion, Spinner, Badge } from "react-bootstrap";
 
 import DeviceDetails from "../../models/device-details";
 import ListItem from "./ListItem";
@@ -21,30 +21,41 @@ function DeviceInformation() {
     React.useState<DeviceDetails | null>(null);
 
   React.useEffect(() => {
-    const deviceInformation = new XMLParser().parseFromString(sampleResponse);
-    setDeviceDetails(new DeviceDetails(deviceInformation));
+    const deviceInformationTimeout = setTimeout(() => {
+      const deviceInformation = new XMLParser().parseFromString(sampleResponse);
+      setDeviceDetails(new DeviceDetails(deviceInformation));
+
+      clearTimeout(deviceInformationTimeout);
+    }, 2000);
   }, []);
 
   return (
-    <Accordion defaultActiveKey="0">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Device Details</Accordion.Header>
-        <Accordion.Body>
-          {deviceDetails ? (
-            <Container>
-              <ListItem label="dpId" value={deviceDetails?.dpId} />
-              <ListItem label="rdsId" value={deviceDetails?.rdsId} />
-              <ListItem label="rdsVer" value={deviceDetails?.rdsVer} />
-              <ListItem label="mi" value={deviceDetails?.mi} />
-              <ListItem label="srno" value={deviceDetails?.srno} />
-              <ListItem label="sysid" value={deviceDetails?.sysid} />
-            </Container>
-          ) : (
-            <Spinner animation="grow" role="status"></Spinner>
-          )}
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
+    <div className="mt-4">
+      <Accordion defaultActiveKey="0">
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>
+            Device Details
+            <Badge bg="secondary" className="ms-4">
+              {deviceDetails?.mi}
+            </Badge>
+          </Accordion.Header>
+          <Accordion.Body>
+            {deviceDetails ? (
+              <Container>
+                <ListItem label="dpId" value={deviceDetails?.dpId} />
+                <ListItem label="rdsId" value={deviceDetails?.rdsId} />
+                <ListItem label="rdsVer" value={deviceDetails?.rdsVer} />
+                <ListItem label="mi" value={deviceDetails?.mi} />
+                <ListItem label="srno" value={deviceDetails?.srno} />
+                <ListItem label="sysid" value={deviceDetails?.sysid} />
+              </Container>
+            ) : (
+              <Spinner animation="grow" role="status"></Spinner>
+            )}
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+    </div>
   );
 }
 

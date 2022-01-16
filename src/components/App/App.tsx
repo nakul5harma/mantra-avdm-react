@@ -1,3 +1,5 @@
+import { Container } from "react-bootstrap";
+
 import AVDM from "../AVDM/AVDM";
 import Header from "../Header/Header";
 
@@ -5,9 +7,9 @@ function App() {
   return (
     <div>
       <Header></Header>
-      <main>
+      <Container>
         <AVDM></AVDM>
-      </main>
+      </Container>
     </div>
   );
 }
