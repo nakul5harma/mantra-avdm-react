@@ -1,7 +1,31 @@
 {
   "name": "mantra-avdm-react",
+  "description": "Mantra AVDM integration demo for React application",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "mantra",
+    "mfs100",
+    "rd service",
+    "fingerprint scanner",
+    "aadhar",
+    "aadhar verification",
+    "ekyc",
+    "windows",
+    "electronjs",
+    "frontend"
+  ],
+  "author": {
+    "name": "Nakul Sharma",
+    "email": "nakul.165376@gmail.com",
+    "url": "https://www.linkedin.com/in/nakul5harma/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nakul5harma/mantra-avdm-react"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
