@@ -10,6 +10,10 @@ export const captureFingerprintData = createAsyncThunk(
   (url: string) =>
     axios
       .request({
+        headers: {
+          'Content-Type': 'application/xml',
+          'Accept': 'application/xml',
+        },
         method: 'CAPTURE' as any,
         url: `${RD_SERVICE_BASE_URL}${url}`,
         data: `<?xml version="1.0"?>

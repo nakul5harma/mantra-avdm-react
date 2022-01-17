@@ -7,6 +7,10 @@ import convertXmlToJson from '../utils/xml-to-json.util';
 export const getDeviceStatus = createAsyncThunk('getDeviceStatus/fetch', () =>
   axios
     .request({
+      headers: {
+        'Content-Type': 'application/xml',
+        'Accept': 'application/xml',
+      },
       method: 'RDSERVICE' as any,
       url: RD_SERVICE_BASE_URL,
     })
