@@ -38,9 +38,11 @@ function DeviceInformation() {
         <Accordion.Item eventKey="0">
           <Accordion.Header>
             Device Details
-            <Badge bg="secondary" className="ms-4">
-              {deviceDetails?.mi}
-            </Badge>
+            {deviceDetails?.mi && (
+              <Badge bg="secondary" className="ms-4">
+                {deviceDetails.mi}
+              </Badge>
+            )}
           </Accordion.Header>
           <Accordion.Body>
             {deviceDetails ? (

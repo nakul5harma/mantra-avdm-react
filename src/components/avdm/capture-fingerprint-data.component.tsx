@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { Accordion, Badge, Button, Container, Spinner } from 'react-bootstrap';
+import { Accordion, Button, Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { RootState } from '../../store/store';
 import { captureFingerprintData } from '../../slices/capture-fingerprint-data.slice';
@@ -56,13 +58,13 @@ function CaptureFingerprintData() {
                       <>
                         {captureResponseDetails?.errCode}
 
-                        <Badge
-                          pill
-                          bg={captureResponseDetails?.errCode === '0' ? 'success' : 'danger'}
-                          className="ms-4"
-                        >
-                          {captureResponseDetails?.errCode === '0' ? 'SUCCESS' : 'FAILED'}
-                        </Badge>
+                        <span className="ms-2">
+                          {captureResponseDetails?.errCode === '0' ? (
+                            <FontAwesomeIcon icon={faCheckCircle} color="#198754" size="lg" />
+                          ) : (
+                            <FontAwesomeIcon icon={faTimesCircle} color="#dc3545" size="lg" />
+                          )}
+                        </span>
                       </>
                     }
                   />
