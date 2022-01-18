@@ -2,6 +2,8 @@
 
 Mantra AVDM integration demo for React application. This application is bootstrap with [create-react-app](https://create-react-app.dev/).
 
+![App Screenshot](./resources/app-screenshot.png)
+
 ## Running The Application
 
 - Use `yarn install` to install dependencies.
@@ -22,3 +24,13 @@ Mantra AVDM integration demo for React application. This application is bootstra
 - [ReactBootstrap](https://react-bootstrap.github.io/) : 2.1.1
 - [Bootstrap](https://getbootstrap.com/) : 5.1.3
 - [ReactFontAwesome](https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react) : 0.1.16
+
+## Deployment
+
+This app is deployed on [Heroku](https://nakul5harma-mantra-avdm-react.herokuapp.com/).
+
+## Debugging
+
+- API requests to RD service in user's machine (user's localhost) may fail with error `blocked:other` if an ad-blocker is active, please turn off the ad-blocker to proceed.
+
+  ![Ad-blocker Error](./resources/ad-blocker-error.png)
